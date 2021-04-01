@@ -2,6 +2,7 @@ const express = require("express")
 const bodyParser = require("body-parser")
 const path = require("path")
 const upload = require("./multer")
+const uploader = require("./cloudinary")
 //const upload = multer.upload
 
 const app = express()
@@ -16,7 +17,7 @@ app.get("/", (req, res) => {
 })
 
 app.post('/upload', upload.single('pdf'), function (req, res, next) {
-  console.log(req);
+  console.log(req.file);
 })
 
 
