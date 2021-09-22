@@ -3,7 +3,7 @@ const express = require("express")
 const bodyParser = require("body-parser")
 const path = require("path")
 const upload = require("./multer")
-const Pdf = require("./pdfModel")
+const { Pdf, queryStr } = require("./pdfModel")
 const handlebars = require("express-handlebars")
 
 const app = express()
@@ -26,10 +26,12 @@ app.get("/", (req, res) => {
   res.render("main")
 })
 
-app.get("/books/:book", (req, res) => {
+app.get("/books/:book", async (req, res) => {
   const { book } = req.params
   console.log(book);
-  res.json({data: book})
+  const matchArr = await queryStr(book)
+  console.log(matchArr);
+  res.json({data: matchArr})
 })
 
 app.post('/', upload.single('pdf'), async function (req, res, next) {
