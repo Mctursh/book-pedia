@@ -1,5 +1,3 @@
-const fs = require('fs');
-const https = require('https');
 const { uploader, createLink } = require("./cloudinary")
 const express = require("express")
 const bodyParser = require("body-parser")
@@ -28,7 +26,13 @@ app.get("/", (req, res) => {
   res.render("main")
 })
 
-app.post('/upload', upload.single('pdf'), async function (req, res, next) {
+app.get("/books/:book", (req, res) => {
+  const { book } = req.params
+  console.log(book);
+  res.json({data: book})
+})
+
+app.post('/', upload.single('pdf'), async function (req, res, next) {
   const { asset_id, secure_url, original_filename, public_id } = await uploader(req.file.path)
   const { name } = req.body
   const toBeSaved = {
