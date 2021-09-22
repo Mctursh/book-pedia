@@ -11,11 +11,12 @@ const handlebars = require("express-handlebars")
 const app = express()
 
 //setting our default view to handlebars
-app.set("view engine", "handlebars")
+app.set("view engine", "hbs")
 
 //Sets handlebars configurations
-app.engine('handlebars', handlebars({
-    layoutsDir: __dirname + '/views/layouts',
+app.engine('hbs', handlebars({
+    defaultLayout: __dirname + '/views/layouts/index',
+    extname: "hbs"
 }));
 
 app.use(express.json())
@@ -29,7 +30,9 @@ app.get("/", (req, res) => {
 
 app.post('/upload', upload.single('pdf'), async function (req, res, next) {
   const { asset_id, secure_url, original_filename, public_id } = await uploader(req.file.path)
+  const { name } = req.body
   const toBeSaved = {
+    nativeName: name,
     title: original_filename,
     url: secure_url,
     cloudId: asset_id,

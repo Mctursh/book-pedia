@@ -7,6 +7,7 @@ async function main() {
 }
 
 const pdfSchema = new mongoose.Schema({
+  nativeName: String,
   title: String,
   url: String,
   cloudId: String,
