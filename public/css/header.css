@@ -1,0 +1,100 @@
+header{
+    background-color: #3D56B2;
+    padding: 1em 15em;
+    box-shadow: 1px 1px 4px #000;
+    color: #fff;
+}
+
+#brand_name{
+    font-family: 'Montserrat',
+    sans-serif;
+}
+
+.header_child{
+    display: flex;
+    align-items: center;
+    height: 4em;
+    gap: 1.5em;
+}
+
+.header_child form{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.header_child input{
+    height: 2.5em;
+    border-radius: 5px;
+    border: none;
+    width: 30em;
+    font-family: 'Raleway',
+    sans-serif;
+    outline: none;
+}
+
+input::placeholder{
+    font-family: 'Raleway',
+    sans-serif;
+}
+
+.fa-search{
+    color: blue;
+}
+
+#input_field{
+    background-color: #fff;
+    box-shadow: 0.4px 1.2px 3px #fff;
+    display: flex;
+    align-items: center;
+    padding: 0 1em;
+    border-radius: 7px;
+}
+
+.suggestions{
+    position: relative;
+    top: 1.5em;
+}
+
+.suggestion_child{
+    position: absolute;
+    height: 16em;
+    background-color: #fff;
+    width: 100%;
+    box-shadow: 0.4px 1.2px 3px #000;
+    border-radius: 7px;
+    overflow: auto;
+}
+
+.suggested_courses{
+    color: #000;
+}
+
+.suggested_courses ul{
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+    list-style: none;
+    padding: .5em 0;
+}
+
+.suggested_courses ul li{
+    padding: 0 .5em;
+}
+
+.suggested_courses ul li:hover{
+    background-color: lightgray;
+}
+
+.suggested_courses ul a{
+    text-decoration: none;
+    color: inherit;
+}
+
+#no_result{
+    color: #000;
+}
+
+.hide{
+    display: none;
+}

@@ -1,3 +1,40 @@
-<nav>
-    <h1>This is the header</h1>
-</nav>
+<div class="header_parent">
+    <header>
+        <div  class="header_child">
+            <h1 id="brand_name">PDF Dropbox</h1>
+            <form action="/books" method="post" name="search-book" id="search-book">
+                <div id="input_field">
+                    <label for="search"></label>
+                    <input onfocus="handleFocus('#search')" type="text" id="search" placeholder="Search for course">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="suggestions hide">
+                    <div class="suggestion_child">
+                        <div class="loader_parent hide">
+                            <div class="lds-roller">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <p class="hide" id="no_result">No Result Found</p>
+                        </div>
+                        <div class="suggested_courses hide">
+                            <ul id="sug">                                
+                                {{!-- <li>
+                                    <a href="#">
+                                        <p>mth110</p>
+                                    </a>
+                                </li> --}}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </header>
+</div>
