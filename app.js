@@ -23,7 +23,7 @@ app.use(express.static(path.join(__dirname, '/public')))
 
 
 app.get("/", (req, res) => {
-  res.render("main")
+  res.render("main", {flashMsg: true, success: true})
 })
 
 app.get("/books/:book", async (req, res) => {
