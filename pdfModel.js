@@ -17,6 +17,7 @@ const pdfSchema = new mongoose.Schema({
 
 const Pdf = new mongoose.model("Pdf", pdfSchema)
 
+//search DB for certain query and returns sorted matches
 const queryStr = async (str) => {
   const arr = await Pdf.find({ 
     "nativeName": { "$regex": `${str}`, "$options": "i"} 
@@ -24,8 +25,29 @@ const queryStr = async (str) => {
   return arr
 }
 
-// const createBook = (bookInfo) => {
+//Updates the number of downloads for the book
+const updateDownload = async (bookName) => {
+  const doc = await Pdf.findOne({nativeName : bookName})
+  doc.downloads += 1;
+  await doc.save()
+}
 
-// }
+//handler that handles error
+const handle = (promise) => {
+  return promise
+    .then(data => ([data, undefined]))
+    .catch(error => Promise.resolve([undefined, error]));
+}
 
-module.exports = { Pdf, queryStr }
+//seed book to DB and handles error
+const createBook = async (bookDetail) => {
+  const [status, bookError] = await handle(Pdf.create(bookDetail))
+  console.log(status);
+  if(bookError) {
+    return false
+  } else {
+    return true
+  }
+}
+
+module.exports = { queryStr, updateDownload, createBook }
