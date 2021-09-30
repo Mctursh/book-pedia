@@ -5,6 +5,11 @@ const path = require("path")
 const upload = require("./multer")
 const { Pdf, queryStr } = require("./pdfModel")
 const handlebars = require("express-handlebars")
+const session = require("express-session")
+const cookieParser = require("cookie-parser")
+const flash = require("connect-flash")
+
+const homeRoutes = require("./routes/home")
 
 const app = express()
 
@@ -20,10 +25,21 @@ app.engine('hbs', handlebars({
 app.use(express.json())
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(express.static(path.join(__dirname, '/public')))
+app.use(cookieParser());
+app.use(session({
+  secret: "mysecretstring",
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(flash());
+
+app.use("/", homeRoutes)
 
 
 app.get("/", (req, res) => {
-  res.render("main", {flashMsg: true, success: true})
+  const failureMsg = req.flash("failure")
+  const successMsg = req.flash("success")
+  res.render("main", { successMsg, success: successMsg.length > 0, failureMsg, failure: failureMsg.length > 0 })
 })
 
 app.get("/books/:book", async (req, res) => {
@@ -34,7 +50,11 @@ app.get("/books/:book", async (req, res) => {
   res.json({data: matchArr})
 })
 
-app.post('/', upload.single('pdf'), async function (req, res, next) {
+app.get('/download', ( req, res ) => {
+  res.send(createLink());
+})
+
+app.post('/upload', upload.single('pdf'), async function (req, res, next) {
   const { asset_id, secure_url, original_filename, public_id } = await uploader(req.file.path)
   const { name } = req.body
   const toBeSaved = {
@@ -43,17 +63,28 @@ app.post('/', upload.single('pdf'), async function (req, res, next) {
     url: secure_url,
     cloudId: asset_id,
     publicID: public_id,
-    downloadLink: createLink(public_id) //generates a downloadable link of the image
+    downloads: 0
   }
   Pdf.create(toBeSaved).then((res) => {
     console.log(res);
-  }).then(() => res.send("successfully uploaded the pdf"))
+  }).then(() => {
+    req.flash("success", "Successfully uploaded pdf")
+    res.redirect("/")
+  }).catch(() => {
+    req.flash("failure", "Failed to upload pdf")
+    res.redirect("/")
+  })
 })
 
-app.get('/download', ( req, res ) => {
-  res.send(createLink());
-}) 
-
+app.post("/download/count", async (req, res) => {
+  const { book }  = req.body;
+  const doc = await Pdf.findOne({nativeName : book})
+  doc.downloads += 1;
+  await doc.save()
+  res.json({
+    data: req.body.book
+  })
+})
 
 app.listen(3000, (req, res) => {
   console.log("successfully running on port 3000");

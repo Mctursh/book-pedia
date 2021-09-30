@@ -12,7 +12,7 @@ const pdfSchema = new mongoose.Schema({
   url: String,
   cloudId: String,
   publicID: String,
-  downloadLink: String
+  downloads: Number
 })
 
 const Pdf = new mongoose.model("Pdf", pdfSchema)
@@ -23,5 +23,9 @@ const queryStr = async (str) => {
   }).sort({"date": "desc"}) //sorting the results in terms of highest date values
   return arr
 }
+
+// const createBook = (bookInfo) => {
+
+// }
 
 module.exports = { Pdf, queryStr }

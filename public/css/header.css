@@ -14,13 +14,14 @@ header{
     display: flex;
     align-items: center;
     height: 4em;
-    gap: 1.5em;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .header_child form{
     display: flex;
     flex-direction: column;
-
+    /* width: 50%; */
 }
 
 .header_child input{

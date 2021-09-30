@@ -1,17 +1,26 @@
 <main>
-    <form class="upload" action="/" enctype="multipart/form-data" method="post">
+    <form class="upload" action="/upload" enctype="multipart/form-data" method="post">
         <div id="form-header">
-            <h1>Upload form</h1>
+            <h1>Upload Book</h1>
         </div>
         <hr>
         <div class="main">
-            {{#if flashMsg}}
+
+            {{!-- Success flash Messages --}}
+            {{#if success}}
             <div class="flash-msg" role="alert">
-                {{#if success}}
-                    <p class="success"> <span><i class="fas fa-check"></i></span> Successfully uploaded pdf </p>                  
-                {{else}}
-                    <p class="error"> <span><i class="fas fa-exclamation-circle"></i></span> Failed to upload pdf, Please try again </p>                   
-                {{/if}}
+            {{#each successMsg}}
+                <p class="success"> <span><i class="fas fa-check"></i></span> {{ this }} </p>
+            {{/each}}                
+            </div>
+            {{/if}}
+
+            {{!-- Failure flash message --}}
+            {{#if failure}}
+            <div class="flash-msg" role="alert">
+            {{#each failureMsg}}
+                <p class="error"> <span><i class="fas fa-exclamation-circle"></i></span> {{ this }} </p>
+            {{/each}}                
             </div>
             {{/if}}
             <div class="name-parent">
@@ -20,12 +29,12 @@
             </div>
             <div class="input-parent">
                 <label for="pdf">Upload Pdf</label>
-                <input id="pdf" type="file" name="pdf">
+                <input id="pdf" type="file" name="pdf" required>
             </div>
             <button id="btn" type="submit">Submit</button>
         </div>
     </form>
 </main>
 
-<a href="/download">Test</a>
+<a onclick="updateCount('download_test')" href="#" id="test">Test</a>
 <!-- <a href="https://res.cloudinary.com/mctursh/image/upload/fl_attachment/v1632169724/n156rwcpaijxgm6qvstu.pdf" download="test">Test</a> -->

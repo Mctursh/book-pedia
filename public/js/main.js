@@ -63,7 +63,19 @@ function noResult() {
     $(".suggested_courses, .lds-roller").addClass("hide")
 }
 
-// function resultFound() {
-//     $(".loader_parent, #no_result").addClass("hide")
-//     $(".lds-roller").removeClass("hide")
-// }
+
+function updateCount(params) {
+    fetch('/download/count', {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({book : params})
+    })
+    .then(res => res.json())
+    .then(res => {
+        console.log(`${res.data} successfully posted`);
+        // $("#test").attr("href", `https://google.com`)
+    })
+}
