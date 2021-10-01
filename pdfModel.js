@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+const handle = require("./helpers/errorHandler")
 
 main().catch(err => console.log(err));
 
@@ -12,7 +13,10 @@ const pdfSchema = new mongoose.Schema({
   url: String,
   cloudId: String,
   publicID: String,
-  downloads: Number
+  downloads: { type: Number, default: 0 },
+  dateCreated: { type: String, default: `${new Date().toLocaleString("default", { month: "short"})} ${new Date().getFullYear()}`},
+  pages: Number,
+  size: String
 })
 
 const Pdf = new mongoose.model("Pdf", pdfSchema)
@@ -30,13 +34,6 @@ const updateDownload = async (bookName) => {
   const doc = await Pdf.findOne({nativeName : bookName})
   doc.downloads += 1;
   await doc.save()
-}
-
-//handler that handles error
-const handle = (promise) => {
-  return promise
-    .then(data => ([data, undefined]))
-    .catch(error => Promise.resolve([undefined, error]));
 }
 
 //seed book to DB and handles error
