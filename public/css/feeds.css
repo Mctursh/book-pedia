@@ -1,0 +1,45 @@
+section#book{
+    padding: 3em 15em;
+}
+
+.articles{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+article{
+    display: flex;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 1px 1px 11px #bdb7b7;
+}
+
+article img{
+    width: 95px;
+}
+
+.metadata{
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.detail ul{
+    display: flex;
+    list-style: none;
+    gap: 1em;
+}
+
+li{
+    font-size: .8em;
+    color: lightslategrey;
+}
+.description p{
+    font-size: .8em;
+}
+.title h1 a{
+    text-decoration: none;
+    color: blue;
+}

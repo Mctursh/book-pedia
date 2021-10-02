@@ -3,12 +3,23 @@ const router = express.Router()
 
 const { queryStr } = require("../pdfModel")
 
-router.get("/:book", async (req, res) => {
+
+router.post("/", async (req, res) => {
+    //query search
+    const { name } = req.query
+    const matchArr = await queryStr(name)
+    res.render("feeds", { matchArr })
+})
+
+router.get("/api/:book", async (req, res) => {
     const { book } = req.params
-    console.log(book);
     const matchArr = await queryStr(book)
-    console.log(matchArr);
     res.json({data: matchArr})
+})
+
+router.get("/:book", (req, res) => {
+    //only the book
+    res.render("book")
 })
 
 module.exports = router

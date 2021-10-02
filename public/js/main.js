@@ -3,7 +3,7 @@ let prev, isPresent = false, isFound = false;
 
 const _fetch = (str) => {
     if (prev !== str) {
-        fetch(`/books/${str}`)
+        fetch(`/books/api/${str}`)
         .then((res) => {
             return res.json()
         })
@@ -22,7 +22,7 @@ const handleFocus = (id) => {;
     if (document.activeElement === document.querySelector(id)) {
         const interval = setInterval(function () {
             let inp = $(id).val();    
-            document.querySelector("#search-book").action = `book/${inp}`  //setting the post url 
+            document.querySelector("#search-book").action = `/books?name=${inp}`  //setting the post url 
             if (inp.length > 0) {
                 $(".suggestions").removeClass("hide")
                 isPresent ? $(".loader_parent, #no_result").addClass("hide") : ($(".loader_parent, lds-roller").removeClass("hide"), $("#no_result").addClass("hide"))
