@@ -1,14 +1,16 @@
 const express = require("express")
 const router = express.Router()
+const { unlink } = require('fs/promises');
 
 const { uploader } = require("../cloudinary")
 const upload = require("../multer")
-const { createBook } = require("../pdfModel")
+const { createBook, queryStr } = require("../pdfModel")
 const convertSize = require("../helpers/sizeConverter")
 
 
-router.get("/", (req, res) => {
-    res.render("feeds")
+router.get("/", async (req, res) => {
+    const feeds = await queryStr("", {"downloads": "desc"})
+    res.render("feeds", {matchArr: feeds})
 })
 
 router.get("/upload", (req, res) => {
@@ -19,21 +21,31 @@ router.get("/upload", (req, res) => {
 
 
 router.post('/upload', upload.single('pdf'), async function (req, res, next) {
-    // uploading pdf to cloudinary 
-    const { asset_id, secure_url, original_filename, public_id, pages, bytes } = await uploader(req.file.path)
-    const { name } = req.body
-    const toBeSaved = {
-        nativeName: name,
-        title: original_filename,
-        url: secure_url,
-        cloudId: asset_id,
-        publicID: public_id,
-        pages: pages,
-        size: convertSize(bytes)
+    // Validating if file is a PDF
+    if (req.file.mimetype == "application/pdf") {
+        // uploading pdf to cloudinary 
+        console.log(req.file);
+        const { asset_id, secure_url, original_filename, public_id, pages, bytes } = await uploader(req.file.path)
+        const { name, desc } = req.body
+        const toBeSaved = {
+            nativeName: name,
+            title: original_filename,
+            url: secure_url,
+            cloudId: asset_id,
+            publicID: public_id,
+            description: desc,
+            pages: pages,
+            size: convertSize(bytes)
+        }
+        const responseStatus = await createBook(toBeSaved); //Saving book data to DB
+        responseStatus ? req.flash("success", "Successfully uploaded pdf") : req.flash("failure", "Failed to upload pdf")
+        res.redirect("/upload")
+    } else {
+        await unlink(req.file.path);
+        req.flash("failure", "Failed, Please upload a valid PDF")
+        res.redirect("/upload")
     }
-    const responseStatus = await createBook(toBeSaved); //Saving book data to DB
-    responseStatus ? req.flash("success", "Successfully uploaded pdf") : req.flash("failure", "Failed to upload pdf")
-    res.redirect("/")
+    
 })
 
 module.exports = router

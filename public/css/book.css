@@ -1,0 +1,60 @@
+.exp-book-parent{
+    padding: 3em 15em;
+}
+
+#exp-article{
+    min-height: 20em;
+}
+
+.exp-img img{
+    width: 280px;
+    height: 100%;
+}
+
+.exp-metadata{
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+#exp-name{
+    font-size: 2em;
+    line-height: 1.2;
+    letter-spacing: 1px;
+}
+
+.exp-details ul{
+    display: flex;
+    gap: 3em;
+    list-style: none;
+    font-size: 1.2em;
+}
+
+.exp-desc p{
+    line-height: 1.5;
+    letter-spacing: .3px;
+}
+
+#dwn-parent{
+    height: 100%;
+    display: flex;
+    align-items: end;
+}
+
+.dwn-btn{
+    border: none;
+    padding: 1em;
+    background-color: #5C7AEA;
+    border-radius: 6px;
+}
+
+.dwn-btn button{
+    font-size: 1.2em;
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    background: inherit;
+    border: none;
+    cursor: pointer;
+}

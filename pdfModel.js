@@ -16,18 +16,19 @@ const pdfSchema = new mongoose.Schema({
   downloads: { type: Number, default: 0 },
   dateCreated: { type: String, default: `${new Date().toLocaleString("default", { month: "short"})} ${new Date().getFullYear()}`},
   pages: Number,
-  size: String
+  size: String,
+  description: String
 })
 
 const Pdf = new mongoose.model("Pdf", pdfSchema)
 
 //search DB for certain query and returns sorted matches
-const queryStr = async (str) => {
+const queryStr = async (str, sort = {"downloads": "desc"}) => {
   const arr = await Pdf.find({ 
     "nativeName": { "$regex": `${str}`, "$options": "i" // set the search to be case insensitive
   } 
   })
-  .sort({"downloads": "desc"}) //sorting the results in terms of highest downloads values
+  .sort(sort) //sorting the results in terms of highest downloads values
   .lean() //returns a plain Javascript object instead of a mongo object
   return arr
 }

@@ -69,6 +69,7 @@ button{
 }
 
 button#btn{
+    font-weight: 600;
     background-color: rgb(20, 39, 155);
     font-family: Raleway;
     border-radius: 5px;
@@ -99,4 +100,12 @@ button#btn{
 
 .error span, .success span {
     padding: 0 1em;
+}
+
+textarea{
+    outline: none;
+    font-family: inherit;
+    border: 1px solid rgba(34, 36, 38, .15);
+    border-radius: 5px;
+    padding: .4em;
 }

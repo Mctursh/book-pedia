@@ -2,7 +2,7 @@
     <div class="articles">
         {{#each matchArr}}           
             <article>
-                <img src="pdf-demo-pic.jpg" alt="pdf">
+                <img id="feed-img" src="pdf-demo-pic.jpg" alt="pdf">
                 <div class="metadata">
                     <div class="title">
                         <h1><a href="/books/{{ this.nativeName }}">{{ this.nativeName }}</a></h1>
@@ -10,13 +10,13 @@
                     <div class="detail">
                         <ul>
                             <li>{{ this.pages }} Pages</li>
-                            <li>{{ this.date }}</li>
+                            <li>{{ this.dateCreated }}</li>
                             <li>{{ this.size }}</li>
                             <li>{{ this.downloads }} Downloads</li>
                         </ul>
                     </div>
                     <div class="description">
-                        <p>This MTH125 pdf contains past questions and detailed solution ro them</p>
+                        <p>{{ this.description }}</p>
                     </div>
                 </div>
             </article>

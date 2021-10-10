@@ -1,5 +1,6 @@
 require('dotenv').config()
 const cloudinary = require("cloudinary").v2
+const { unlink } = require('fs/promises');
 
 cloudinary.config({ 
     cloud_name: process.env.CLOUD_NAME, 
@@ -10,10 +11,11 @@ cloudinary.config({
 const uploader = async (filePath) => {
     let info;
     await cloudinary.uploader.upload(filePath, 
-        function(error, result) {
+        async function(error, result) {
             if (!error) {
                 console.log(result);
                 info = result
+                await unlink(filePath);
             } else {
                 throw error
             }
