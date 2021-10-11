@@ -1,11 +1,11 @@
 <section id="book">
     <div class="articles">
-        {{#each matchArr}}           
+        {{#each matchArr}}         
             <article>
-                <img id="feed-img" src="pdf-demo-pic.jpg" alt="pdf">
+                <img id="feed-img" src="/pdf-demo-pic.jpg" alt="pdf">
                 <div class="metadata">
                     <div class="title">
-                        <h1><a href="/books/{{ this.nativeName }}">{{ this.nativeName }}</a></h1>
+                        <h1><a href="/books/{{ this._id }}">{{ this.nativeName }}</a></h1>
                     </div>
                     <div class="detail">
                         <ul>

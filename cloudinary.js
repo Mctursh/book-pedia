@@ -25,7 +25,7 @@ const uploader = async (filePath) => {
 }
 
 const createLink = (id) => {
-    const link = cloudinary.url(id || "dgwyxcw2rk5mkgijcc64", {flags: "attachment"})
+    const link = cloudinary.url(id, {flags: "attachment"})
     return link
 }
 

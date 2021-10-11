@@ -22,6 +22,17 @@ const pdfSchema = new mongoose.Schema({
 
 const Pdf = new mongoose.model("Pdf", pdfSchema)
 
+//search DB by mongo _id
+const idFinder = async (id) => {
+    const [status, bookError] = await handle(Pdf.findById(id).lean())
+    console.log(status);
+    if(bookError) {
+      return null
+    } else {
+      return status
+    }
+}
+
 //search DB for certain query and returns sorted matches
 const queryStr = async (str, sort = {"downloads": "desc"}) => {
   const arr = await Pdf.find({ 
@@ -51,4 +62,4 @@ const createBook = async (bookDetail) => {
   }
 }
 
-module.exports = { queryStr, updateDownload, createBook }
+module.exports = { queryStr, updateDownload, createBook, idFinder }
