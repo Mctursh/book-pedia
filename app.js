@@ -37,6 +37,11 @@ app.use("/", homeRoutes)
 app.use("/books", booksRoutes)
 app.use("/download", downloadRoutes)
 
-app.listen(3000, (req, res) => {
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
+
+app.listen(port, () => {
   console.log("successfully running on port 3000");
 })
