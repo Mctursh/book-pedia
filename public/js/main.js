@@ -48,7 +48,7 @@ function updateSuggestions(params) {
     const sug = $("#sug")[0]
     const format = (id) => {
         return `<li>
-                    <a href='${id._id}'>
+                    <a href='/books/${id._id}'>
                         <p>${id.nativeName}</p>
                     </a>
                 </li>`
