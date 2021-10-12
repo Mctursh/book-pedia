@@ -64,12 +64,7 @@ function noResult() {
 }
 
 
-function updateCount(params, link) {
-    fetch(link).then(res => res.blob())
-    .then( blob => {
-        let file = window.URL.createObjectURL(blob)
-        window.location.assign(file)
-    })
+function updateCount(params) {
     fetch('/download/count', {
         method: "POST",
         headers: {
