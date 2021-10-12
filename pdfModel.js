@@ -1,11 +1,27 @@
 require('dotenv').config()
 const mongoose = require("mongoose")
 const handle = require("./helpers/errorHandler")
+// const MongoClient = require('mongodb').MongoClient;
 
-main().catch(err => console.log(err));
+const url = `mongodb+srv://admin-ayoade:${process.env.MONGO_PASSWORD}@cluster0.4d1r2.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
+const options = { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }
+// // Connect using MongoClient
+// const mongoClient = new MongoClient(url);
+// // mongoClient.connect(function(err, client) {
+// //   const db = client.db(dbName);
+// //   client.close();
+// // });
+main()
+  .then((data) => {
+    // console.log(res);
+    // console.log(mongoClient);
+    console.log('succefully connected to DB');
+    return data
+  })
+  .catch(err => console.log(err));
 
 async function main() {
-  await mongoose.connect(`mongodb+srv://admin-ayoade:${process.env.MONGO_PASSWORD}@cluster0.4d1r2.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
+  await mongoose.connect(url, options);
 }
 
 const pdfSchema = new mongoose.Schema({
@@ -63,4 +79,4 @@ const createBook = async (bookDetail) => {
   }
 }
 
-module.exports = { queryStr, updateDownload, createBook, idFinder }
+module.exports = { queryStr, updateDownload, createBook, idFinder, main }
