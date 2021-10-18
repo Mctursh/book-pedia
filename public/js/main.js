@@ -116,7 +116,8 @@ function handleSwitch() {
     const sideBarOpenStatus = searchBarClassArr.includes("hide")
     const sideBarClosedStatus = brandNameClassArr.includes("hide")
     if (!sideBarOpenStatus) {
-        //closesthe search bar
+        //closes the search bar
+        $(".btn-search .fas").removeClass("fa-times").addClass("fa-search")
         searchBar.addClass("animate__fadeOutDown")
         setTimeout(() => {
             searchBar.addClass("hide").removeClass("animate__fadeOutDown")
@@ -125,6 +126,7 @@ function handleSwitch() {
         }, 500)        
     } else if (!sideBarClosedStatus) {
         //shows the search bar
+        $(".btn-search .fas").removeClass("fa-search").addClass("fa-times")
         brandName.addClass("animate__fadeOutDown")
         setTimeout(() => {
             brandName.addClass("hide").removeClass("animate__fadeOutDown")

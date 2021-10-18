@@ -103,8 +103,9 @@ body {
     text-decoration: none;
   }
 
-  .fa-search{
+  .fa-search, .fa-bars, .fa-times{
     color: #fff;
+    font-size: 1.5em;
   }
   .header_child_mobile{
     display: flex;
@@ -118,5 +119,24 @@ body {
   }
   .aside-header button{
     text-align: left;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .pad{
+    padding: 1em;
+  }
+  .detail ul{
+    gap: .3em;
+    font-size: .9em;
+  }
+  .description p{
+    font-size: .7em;
+  }
+  #feed-img {
+    width: 75px;
+  }
+  .search-form{
+    width: 13em;
   }
 }

@@ -17,6 +17,8 @@ article{
 
 #feed-img{
     width: 95px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 .metadata{
