@@ -55,6 +55,11 @@ body {
   .exp-desc p {
     font-size: .8em;
   }
+  form.upload{
+    width: 80%;
+    margin: 2em auto;
+    border-radius: 10px;
+  }
 }
 @media only screen and (max-width: 580px) {
   .header_child{
@@ -138,5 +143,10 @@ body {
   }
   .search-form{
     width: 13em;
+    
+  }
+  .name-parent,
+  .input-parent{
+    padding: 1em 0;
   }
 }
