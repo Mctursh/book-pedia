@@ -6,3 +6,117 @@ body {
   font-family: 'Raleway',
   sans-serif;
 }
+
+/***************************** MEDIA QUERY *************************/
+@media only screen and (max-width: 1160px) {
+  .pad {
+    padding: 1em 10em;
+  }
+  li{
+    font-size: .7em;
+  }
+  .exp-details ul{
+    gap: .5em;
+  }
+  .exp-desc p{
+    font-size: .9em;
+  }
+}
+@media only screen and (max-width: 940px) {
+  .pad {
+    padding: 1em 5em;
+  }
+}
+@media only screen and (max-width: 790px) {
+  .pad {
+    padding: 1em 2em;
+  }
+}
+@media only screen and (max-width: 700px) {
+  #brand_name{
+    font-size: 1.5em;
+  }
+  #input_field{
+    padding: 0 .7em;
+  }
+  .header_child input{
+    width: 14em;
+  }
+  #upl-btn{
+    font-size: .8em;
+    padding: .5em 1em;
+  }
+  .exp-img img{
+    width: 210px;
+  }
+  #exp-article {
+    min-height: 17em;
+  }
+  .exp-desc p {
+    font-size: .8em;
+  }
+}
+@media only screen and (max-width: 580px) {
+  .header_child{
+    display: none;
+  }
+  aside{
+    position: absolute;
+    height: 100vh;
+    width: 70%;
+    left: 0;
+    top: 0;
+    background-color: #fff;
+    color: #000;
+    padding: 2em;
+    display: flex;
+    gap: 2em;
+    flex-direction: column;
+    box-shadow: 0 0 4px 0 rgb(0 0 0 / 10%),
+    0 4px 8px 0 rgb(0 0 0 / 15%);
+    background-color: #E6E6E6;
+  }
+  .aside-header{
+    grid-template-columns: 1fr 2fr 1fr;
+    display: grid;
+    align-items: center;
+    color: #14279B;
+  }
+  .aside-header h3{
+    justify-self: center;
+    font-size: 1.5em;
+  }
+  .aside-header i{
+    justify-self: left;
+    font-size: 1.5em;
+  }
+  aside ul li{
+    list-style: none;
+    font-size: 1em;
+  }
+
+  aside a{
+    color: #14279B;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    text-decoration: none;
+  }
+
+  .fa-search{
+    color: #fff;
+  }
+  .header_child_mobile{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header_child_mobile button, .aside-header button{
+    background: inherit;
+    color: inherit;
+    border: none;
+  }
+  .aside-header button{
+    text-align: left;
+  }
+}

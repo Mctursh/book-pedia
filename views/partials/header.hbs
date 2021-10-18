@@ -1,11 +1,10 @@
 <div class="header_parent">
-    <header>
+    <header class="pad">
         <div  class="header_child">
             <h1 id="brand_name"><a href="/">BookPedia</a></h1>
-            <form action="/books?name=" method="post" name="search-book" id="search-book">
+            <form class="search-form" action="/books?name=" method="post" name="search-book" id="search-book">
                 <div id="input_field">
-                    <label for="search"></label>
-                    <input onfocus="handleFocus('#search')" type="text" id="search" placeholder="Search for course">
+                    <input class="search" onfocus="handleFocus('.search')" type="text" placeholder="Search for course">
                     <i class="fas fa-search"></i>
                 </div>
                 <div class="suggestions hide">
@@ -21,10 +20,10 @@
                                 <div></div>
                                 <div></div>
                             </div>
-                            <p class="hide" id="no_result">No Result Found</p>
+                            <p class="no_result hide">No Result Found</p>
                         </div>
                         <div class="suggested_courses hide">
-                            <ul id="sug">                                
+                            <ul class="sug">                                
                                 {{!-- <li>
                                     <a href="#">
                                         <p>mth110</p>
@@ -38,6 +37,62 @@
             <div class="upl-btn-parent">
                 <a id="upl-btn" href="/upload">Upload A Book</a>
             </div>
+        </div>
+        <div class="header_child_mobile">
+            <button onclick="toggleNavbar()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div>
+                <h1 id="brand_name" class="brand-name animate__animated"><a href="/">BookPedia</a></h1>
+                <form class="search-form animate__animated hide" action="/books?name=" method="post" name="search-book" id="search-book">
+                    <div id="input_field">
+                        <input onfocus="handleFocus('#search')" type="text" id="search" placeholder="Search for course">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="suggestions hide">
+                        <div class="suggestion_child">
+                            <div class="loader_parent hide">
+                                <div class="lds-roller">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                                <p class="no_result hide">No Result Found</p>
+                            </div>
+                            <div class="suggested_courses hide">
+                                <ul class="sug">
+                                    {{!-- <li>
+                                        <a href="#">
+                                            <p>mth110</p>
+                                        </a>
+                                    </li> --}}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <button onclick="handleSwitch()">
+                <i class="fas fa-search"></i>
+            </button>
+            
+            <aside class="animate__animated hide">
+                {{!-- animate__slideInLeft --}}
+                <div class="aside-header">
+                    <button onclick="toggleNavbar()">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <h3>Menu</h3>
+                </div>
+                <ul class="aside-children">
+                    <li><a href="/upload"><i class="fas fa-upload"></i>Upload</a></li>
+                </ul>
+            </aside>
         </div>
     </header>
 </div>
