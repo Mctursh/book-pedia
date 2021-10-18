@@ -3,6 +3,7 @@ let prev, isPresent = false, isFound = false;
 
 const _fetch = (str) => {
     if (prev !== str) {
+        showLoader()
         fetch(`/books/api/${str}`)
         .then((res) => {
             return res.json()
@@ -10,6 +11,7 @@ const _fetch = (str) => {
         .then(({data}) => {
             if (data.length == 0) {
                 isFound = false // No result found
+                noResult()
             } else if (data.length > 0) {
                 updateSuggestions(data) //updating the suggestion modal
             }
@@ -23,15 +25,12 @@ const handleFocus = (id) => {
     if (document.activeElement === document.querySelector(id)) {
         const interval = setInterval(function () {
             let inp = $(id).val();    
-            document.querySelector(".search-form").action = `/books?name=${inp}`  //setting the post url 
+            $(".search-form")[0].action = `/books?name=${inp}`  //setting the post url Desktop
+            $(".search-form")[1].action = `/books?name=${inp}`  //setting the post url Mobile
             if (inp.length > 0) {
-                $(".suggestions").removeClass("hide")
-                isPresent ? $(".loader_parent, .no_result").addClass("hide") : ($(".loader_parent, lds-roller").removeClass("hide"), $(".no_result").addClass("hide"))
-                !isFound && isPresent && noResult()
                 _fetch(inp)
-                console.log(inp);
             } else {
-                $(".suggestions").addClass("hide")
+                refresh()    
             }
 
             if (document.activeElement !== document.querySelector(id)) {
@@ -43,11 +42,7 @@ const handleFocus = (id) => {
 
 //updates the search suggestions with match names from API
 function updateSuggestions(params) {
-    isPresent = true
-    isFound = true
-    $(".no_result").addClass("hide")
-    $(".loader_parent").addClass("hide")
-    $(".suggested_courses").removeClass("hide")
+    showSuggested()
     const sugDesktop = $(".sug")[0]
     const sugMobile = $(".sug")[1]
     const format = (id) => {
@@ -63,10 +58,29 @@ function updateSuggestions(params) {
     sugMobile.innerHTML = suggestionList
 }
 
+//Shows the result gotten from the API
+function showSuggested(params) {
+    $(".no_result").addClass("hide")
+    $(".loader_parent").addClass("hide")
+    $(".suggested_courses").removeClass("hide")
+}
+
 //Handles suggestions from API when input has no match
 function noResult() {
     $(".no_result, .loader_parent").removeClass("hide")
     $(".suggested_courses, .lds-roller").addClass("hide")
+}
+
+//resets the suggestion process when no input is given
+function refresh() {
+    $(".loader_parent, .lds-roller").removeClass("hide")
+    $(".suggested_courses, .no_result, .suggestions").addClass("hide")
+}
+
+//Displays the loader 
+function showLoader() {
+    $(".suggestions, .loader_parent, .lds-roller").removeClass("hide")
+    $(".no_result, .suggested_courses").addClass("hide")
 }
 
 //updates the download count of a book
