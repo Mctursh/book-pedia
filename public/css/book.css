@@ -9,6 +9,7 @@
 .exp-img img{
     width: 280px;
     height: 100%;
+    border-radius: 10px;
 }
 
 .exp-metadata{
