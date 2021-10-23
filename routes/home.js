@@ -1,16 +1,29 @@
 const express = require("express")
 const router = express.Router()
 const { unlink } = require('fs/promises');
-
 const { uploader } = require("../cloudinary")
 const upload = require("../multer")
 const { createBook, queryStr } = require("../pdfModel")
-const convertSize = require("../helpers/sizeConverter")
-
+const convertSize = require("../helpers/sizeConverter");
+const chunkArr = require("../helpers/chunkArr");
+const genArr = require("../helpers/generateArr");
 
 router.get("/", async (req, res) => {
     const feeds = await queryStr("", {"downloads": "desc"})
-    res.render("feeds", {matchArr: feeds})
+    const chunks = chunkArr(feeds, 10)
+    const currPage = 1
+    const totalPages = genArr(chunks.length, currPage)
+    res.render("feeds", {matchArr: chunks[currPage - 1], totalPages, prev: false, next: currPage + 1})
+})
+
+router.get("/page/:pageNum", async (req, res) => {
+    const pageNum = parseInt(req.params.pageNum, 10)
+    const feeds = await queryStr("", {"downloads": "desc"})
+    const chunks = chunkArr(feeds, 10)
+    const totalPages = genArr(chunks.length, pageNum)
+    const next = pageNum == chunks.length ? false : pageNum + 1
+    const prev = pageNum - 1 <= 0 ? false : pageNum - 1
+    res.render("feeds", {matchArr: chunks[pageNum - 1], totalPages, prev, next})
 })
 
 router.get("/upload", (req, res) => {
@@ -23,8 +36,7 @@ router.get("/upload", (req, res) => {
 router.post('/upload', upload.single('pdf'), async function (req, res, next) {
     // Validating if file is a PDF
     if (req.file.mimetype == "application/pdf") {
-        // uploading pdf to cloudinary 
-        console.log(req.file);
+        // uploading pdf to cloudinary
         const { asset_id, secure_url, original_filename, public_id, pages, bytes } = await uploader(req.file.path)
         const { name, desc } = req.body
         const toBeSaved = {

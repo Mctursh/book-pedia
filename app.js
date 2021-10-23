@@ -11,7 +11,7 @@ const flash = require("connect-flash")
 const homeRoutes = require("./routes/home")
 const booksRoutes = require("./routes/books")
 const downloadRoutes = require("./routes/download")
-const { truncateDesc, truncateName } = require("./helpers/hbs-helpers")
+const { truncateDesc, truncateName, paginate } = require("./helpers/hbs-helpers")
 
 const app = express()
 
@@ -24,7 +24,8 @@ app.engine('hbs', handlebars({
     extname: "hbs",
     helpers: {
       truncateDesc,
-      truncateName
+      truncateName,
+      paginate
     }
 }));
 

@@ -21,5 +21,28 @@
                 </div>
             </article>
         {{/each}}
+        <nav aria-label="Page navigation example">
+            <ul class="paginate">
+                {{#if prev}}
+                    <li class="pa-prev">
+                        <a href="/page/{{ prev }}">Previous</a>
+                    </li>               
+                {{/if}}
+                <div class="page-numbers">
+                    {{#each totalPages}}
+                        {{#if this.status}}
+                            <li class="pa-item active"><a href="/page/{{this.page}}">{{this.page}}</a></li>
+                        {{else}}
+                            <li class="pa-item"><a href="/page/{{this.page}}">{{this.page}}</a></li>
+                        {{/if}}                                               
+                    {{/each}}
+                </div>
+                {{#if next}}
+                    <li class="pa-next">
+                        <a href="/page/{{ next }}">Next</a>
+                    </li>                    
+                {{/if}}
+            </ul>
+        </nav>
     </div>
 </section>

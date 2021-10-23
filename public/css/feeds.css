@@ -49,3 +49,29 @@ li{
     text-decoration: none;
     color: blue;
 }
+
+.paginate {
+    display: flex;
+    list-style: none;
+}
+
+.paginate li, .page-numbers {
+    display: flex;
+    align-content: center;
+}
+
+.pa-item a,
+.pa-next a,
+.pa-prev a{
+    padding: .5em;
+    border: 1px solid #f1f0f0;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.active,
+.active a {
+    background: #1b55e2;
+    color: #fff;
+    text-decoration: none;
+}
