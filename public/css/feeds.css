@@ -8,6 +8,10 @@ section#book{
     gap: 1em;
 }
 
+.articles article{
+    max-height: 110px;
+}
+
 article{
     display: flex;
     background-color: #fff;
@@ -25,7 +29,7 @@ article{
     padding: 1em;
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    row-gap: 1em;    
 }
 
 .detail ul{

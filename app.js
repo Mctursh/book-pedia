@@ -11,7 +11,7 @@ const flash = require("connect-flash")
 const homeRoutes = require("./routes/home")
 const booksRoutes = require("./routes/books")
 const downloadRoutes = require("./routes/download")
-// const { main } = require("./pdfModel")
+const { truncateDesc, truncateName } = require("./helpers/hbs-helpers")
 
 const app = express()
 
@@ -21,8 +21,14 @@ app.set("view engine", "hbs")
 //Sets handlebars configurations
 app.engine('hbs', handlebars({
     defaultLayout: __dirname + '/views/layouts/index',
-    extname: "hbs"
+    extname: "hbs",
+    helpers: {
+      truncateDesc,
+      truncateName
+    }
 }));
+
+
 const url = `mongodb+srv://admin-ayoade:${process.env.MONGO_PASSWORD}@cluster0.4d1r2.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
 const options = { useNewUrlParser: true, useUnifiedTopology: true }
 
