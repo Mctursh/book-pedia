@@ -7,23 +7,19 @@ const { createBook, queryStr } = require("../pdfModel")
 const convertSize = require("../helpers/sizeConverter");
 const chunkArr = require("../helpers/chunkArr");
 const genArr = require("../helpers/generateArr");
+const feedPrep = require("../helpers/feedPrep");
 
 router.get("/", async (req, res) => {
     const feeds = await queryStr("", {"downloads": "desc"})
-    const chunks = chunkArr(feeds, 10)
-    const currPage = 1
-    const totalPages = genArr(chunks.length, currPage)
-    res.render("feeds", {matchArr: chunks[currPage - 1], totalPages, prev: false, next: currPage + 1})
+    const { next, prev, totalPages, matchArr } = feedPrep(feeds, 1)
+    res.render("feeds", {matchArr, totalPages, prev, next})
 })
 
 router.get("/page/:pageNum", async (req, res) => {
-    const pageNum = parseInt(req.params.pageNum, 10)
+    const pgNum = parseInt(req.params.pageNum, 10)
     const feeds = await queryStr("", {"downloads": "desc"})
-    const chunks = chunkArr(feeds, 10)
-    const totalPages = genArr(chunks.length, pageNum)
-    const next = pageNum == chunks.length ? false : pageNum + 1
-    const prev = pageNum - 1 <= 0 ? false : pageNum - 1
-    res.render("feeds", {matchArr: chunks[pageNum - 1], totalPages, prev, next})
+    const { next, prev, totalPages, matchArr } = feedPrep(feeds, pgNum)
+    res.render("feeds", {matchArr, totalPages, prev, next})
 })
 
 router.get("/upload", (req, res) => {

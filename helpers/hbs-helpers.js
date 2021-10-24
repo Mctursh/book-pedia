@@ -14,22 +14,6 @@ const truncateName = (str) => {
     }
 }
 
-const paginate = (options) => {
-    let attribs;
+const getDate = () => new Date().getFullYear()
 
-    attribs = JSON.parse(options.hash.dataAttribs);
-    return attribs.text
-} 
-// const paginate = (nums, currPage) => {
-//     const status = nums == currPage ? "active" : ""
-//     const format = (num) => {
-//         return `<li class="pa-item ${status}"><a href="/page/${num}">${num}</a></li>\n`
-//     }
-//     let suggestionList = '';
-//     for (let index = 1; index <= nums; index++) {
-//         suggestionList += format(index)
-//     }
-//     return suggestionList
-// } 
-
-module.exports = { truncateDesc, truncateName, paginate }
+module.exports = { truncateDesc, truncateName, getDate }

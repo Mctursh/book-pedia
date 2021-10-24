@@ -5,6 +5,11 @@
 body {
   font-family: 'Raleway',
   sans-serif;
+  position: relative;
+}
+
+section{
+  padding-bottom: 150px !important;
 }
 
 /***************************** MEDIA QUERY *************************/
@@ -63,6 +68,10 @@ body {
   }
 }
 @media only screen and (max-width: 580px) {
+  header{
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+  }
   .header_child{
     display: none;
   }
@@ -112,11 +121,13 @@ body {
   .fa-search, .fa-bars, .fa-times{
     color: #fff;
     font-size: 1.5em;
+    width: 20px;
   }
   .header_child_mobile{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 61px;
   }
   .header_child_mobile button, .aside-header button{
     background: inherit;

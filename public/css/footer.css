@@ -1,0 +1,17 @@
+footer{
+    background-color: #3D56B2;
+    box-shadow: 1px 1px 4px #000;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    padding: 2em 0;
+    width: 100%;
+    margin-top: 100%;
+}
+
+.footer-parent{
+    font-size: .8em;
+}
