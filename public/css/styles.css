@@ -74,6 +74,10 @@ section{
     min-height: 500px;
   }
 
+  #max-file{
+    font-size: .75em;
+  }
+
   header{
     padding-bottom: 0 !important;
     padding-top: 0 !important;

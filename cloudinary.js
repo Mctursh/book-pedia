@@ -10,7 +10,9 @@ cloudinary.config({
 
 const uploader = async (filePath) => {
     let info;
-    await cloudinary.uploader.upload(filePath, 
+    await cloudinary.uploader.upload(filePath,{
+            timeout: 300000
+        }, 
         async function(error, result) {
             if (!error) {
                 console.log(result);
