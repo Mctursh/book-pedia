@@ -1,35 +1,3 @@
-// let pageNum = 1, scale = 1;
-
-// const { disabled } = require("express/lib/application");
-
-// async function preview(url) {
-//     const pdfPromise = pdfjsLib.getDocument(url)
-//     pdfPromise.promise.then(pdf => {
-//         //pdf can be used here
-//         console.log(pdf.numPages);
-
-
-
-//         pdf.getPage(pageNum).then(function(page) {
-//             // you can now use *page* here
-    
-//             let viewport = page.getViewport({ scale });        
-//             let canvas = document.getElementById('pdf-canva');
-//             canvas.width = Math.floor(viewport.width);
-//             canvas.height = Math.floor(viewport.height);
-//             // canvas.style.width = Math.floor(viewport.width) + "px";
-//             // canvas.style.height =  Math.floor(viewport.height) + "px";
-//             let context = canvas.getContext('2d');
-//             const renderCtx = {
-//                 canvasContext:context,
-//                 viewport,
-//             }
-//             page.render(renderCtx)
-//         });
-
-//     })
-// }
-
 // Loaded via <script> tag, create shortcut to access PDF.js exports.
 // let pdfjsLib = window['pdfjs-dist/build/pdf'];
 
@@ -55,7 +23,6 @@ function renderPage(num) {
   // Using promise to fetch the page
   pdfDoc.getPage(num).then(function(page) {
     let viewport = page.getViewport({scale});
-    // let viewport = page.getViewport(canvas.width / page.getViewport({scale}).width)
     canvas.height = viewport.height;
     canvas.width = viewport.width;
     // canvas.style.width = Math.floor(viewport.width) + "px";
@@ -105,9 +72,6 @@ function onPrevPage() {
     return;
   }
   pageNum--;
-  // scale = 1 //resetting the magnification
-  // canvas.style.transform = `scale(${scale}) `
-  // magnification.textContent = scale * 100
   queueRenderPage(pageNum);
 }
 document.getElementById('prev-page').addEventListener('click', onPrevPage);
@@ -120,9 +84,6 @@ function onNextPage() {
     return;
   }
   pageNum++;
-  // scale = 1 //resetting the magnificatio
-  // canvas.style.transform = `scale(${scale}) `
-  // magnification.textContent = scale * 100
   queueRenderPage(pageNum);
 }
 document.getElementById('next-page').addEventListener('click', onNextPage);
@@ -149,14 +110,6 @@ async function preview(url) {
  */
 
 function zoomIn() {
-    // scale < 5 ? scale = scale + 0.25 : scale 
-    // $(".canva-parent").removeClass("ovf")
-    // // $(".canva-parent").addClass("r-ovf")   
-    // canvas.style.transform = `scale(${scale}) `
-    // // $(".canva-parent").removeClass("r-ovf")   
-    // $(".canva-parent").removeClass("ovf")
-    // $(".canva-parent").addClass("ovf")    
-    // // $(".canva-parent")[0].style.overflow = "scroll" 
     scale < 4 ? scale = scale + 0.25 : scale
     canvas.style.transform = `scale(${scale}) translate(37%, 38%)`
     magnification.textContent = scale * 100
@@ -165,8 +118,9 @@ function zoomIn() {
 
 function zoomOut() {
     scale > 0.5 ? scale = scale - 0.25 : scale
-    canvas.style.transform = `scale(${scale}) `    
+    canvas.style.transform = `scale(${scale}) translate(37%, 38%)`    
     magnification.textContent = scale * 100
+    renderPage(pageNum)
 }
 
 function setupPreview() {
