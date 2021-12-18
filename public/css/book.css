@@ -41,13 +41,18 @@
     height: 100%;
     display: flex;
     align-items: end;
+    gap: 1em;
 }
 
 .dwn-btn{
     border: none;
-    padding: 1em;
     background-color: #5C7AEA;
     border-radius: 6px;
+    height: 55px;
+    padding: 0 1em;
+    display: flex;
+    text-decoration: none;
+    justify-content: center;
 }
 
 .dwn-btn button{
@@ -74,7 +79,7 @@
     /* background-color: red; */
     /* padding: 1rem; */
     height: 85%;
-    overflow: hidden;
+    /* overflow: hidden; */
     border-radius: 6px;
     z-index: 1;
     width: 70%;
@@ -100,8 +105,9 @@
 
 .canva-parent{
     margin-top: 3rem;
-    overflow-y: scroll;
+    overflow: scroll;
     height: 100%;
+    width: 100%;
     background-color: #eee;
     display: flex;
     justify-content: center;
@@ -112,8 +118,8 @@
     border: none;
     padding: 0.2rem 0.7rem;
     outline: none;
-    /* background: darkkhaki; */
-    color: #fff;
+    /* background: darkkhaki;
+    color: #fff; */
     border-radius: 3px;
     align-items: center;
     justify-content: center;
@@ -122,6 +128,9 @@
 canvas{
     padding: 0 0.5rem 0.3rem;
     background-color: #eee;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
 }
 
 #curr-num{
@@ -131,7 +140,7 @@ canvas{
 }
 
 .khaki{
-    background-color: #bdb76b;
+    background-color: #eee019;
 }
 
 .khaki:hover{
@@ -163,6 +172,21 @@ canvas{
     margin-left: auto;
 }
 
+#preview-btn{
+    font-size: 1.2em;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    padding: 0 1em;
+    background-color: #eee019;
+    border-radius: 6px;
+    height: 55px;
+}
+#preview-btn:disabled{
+    cursor: not-allowed;
+}
+
 .mag-btn:hover{
     background-color: #a9a9a9;
     color: #fff;
@@ -171,7 +195,7 @@ canvas{
 .magnify button:nth-of-type(3) {
     /* padding: 0 1em 0 0.3em; */
     /* background-color: #bdb76b; */
-    color: #fff;
+    /* color: #fff; */
     border-radius: 4px;
     border: none;
     display: flex;
@@ -186,6 +210,18 @@ canvas{
     filter: blur(4px);
 }
 
+.ovf{
+    overflow: scroll;
+}
+
+.r-ovf{
+    overflow: inherit;
+}
+
+
+
+
+/* ANIMATION */
 .fadeInUpCustom{
     animation-name: fadeInUpCustom;
 }

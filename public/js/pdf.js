@@ -1,5 +1,7 @@
 // let pageNum = 1, scale = 1;
 
+// const { disabled } = require("express/lib/application");
+
 // async function preview(url) {
 //     const pdfPromise = pdfjsLib.getDocument(url)
 //     pdfPromise.promise.then(pdf => {
@@ -49,11 +51,15 @@ let pdfDoc = null,
  */
 function renderPage(num) {
   pageRendering = true;
+  disableMagBtn()
   // Using promise to fetch the page
   pdfDoc.getPage(num).then(function(page) {
     let viewport = page.getViewport({scale});
+    // let viewport = page.getViewport(canvas.width / page.getViewport({scale}).width)
     canvas.height = viewport.height;
     canvas.width = viewport.width;
+    // canvas.style.width = Math.floor(viewport.width) + "px";
+    // canvas.style.height =  Math.floor(viewport.height) + "px";
 
     // Render PDF page into canvas context
     let renderContext = {
@@ -65,6 +71,8 @@ function renderPage(num) {
     // Wait for rendering to finish
     renderTask.promise.then(function() {
       pageRendering = false;
+      scale < 4 && enableMagIncBtn()
+      scale > 0.5 && enableMagDcrBtn()
       if (pageNumPending !== null) {
         // New page rendering is pending
         renderPage(pageNumPending);
@@ -97,9 +105,9 @@ function onPrevPage() {
     return;
   }
   pageNum--;
-  scale = 1 //resetting the magnification
-  canvas.style.transform = `scale(${scale}) `
-  magnification.textContent = scale * 100
+  // scale = 1 //resetting the magnification
+  // canvas.style.transform = `scale(${scale}) `
+  // magnification.textContent = scale * 100
   queueRenderPage(pageNum);
 }
 document.getElementById('prev-page').addEventListener('click', onPrevPage);
@@ -112,9 +120,9 @@ function onNextPage() {
     return;
   }
   pageNum++;
-  scale = 1 //resetting the magnificatio
-  canvas.style.transform = `scale(${scale}) `
-  magnification.textContent = scale * 100
+  // scale = 1 //resetting the magnificatio
+  // canvas.style.transform = `scale(${scale}) `
+  // magnification.textContent = scale * 100
   queueRenderPage(pageNum);
 }
 document.getElementById('next-page').addEventListener('click', onNextPage);
@@ -123,14 +131,15 @@ document.getElementById('next-page').addEventListener('click', onNextPage);
  * Asynchronously downloads PDF.
  */
 async function preview(url) {
+    $("#preview-btn")[0].disabled = true
     pdfjsLib.getDocument(url).promise.then(function (pdfDoc_) {
-        setupPreview()
-        pdfDoc = pdfDoc_;
-        document.getElementById('total-pages').textContent = pdfDoc.numPages;
-        document.getElementById("curr-num").setAttribute("max", pdfDoc.numPages)
-
-        // Initial/first page rendering
-        renderPage(pageNum);
+      setupPreview()
+      pdfDoc = pdfDoc_;
+      document.getElementById('total-pages').textContent = pdfDoc.numPages;
+      document.getElementById("curr-num").setAttribute("max", pdfDoc.numPages)
+      
+      // Initial/first page rendering
+      renderPage(pageNum);
     });
 }
 
@@ -140,9 +149,18 @@ async function preview(url) {
  */
 
 function zoomIn() {
-    scale < 5 ? scale = scale + 0.25 : scale 
-    canvas.style.transform = `scale(${scale}) `
+    // scale < 5 ? scale = scale + 0.25 : scale 
+    // $(".canva-parent").removeClass("ovf")
+    // // $(".canva-parent").addClass("r-ovf")   
+    // canvas.style.transform = `scale(${scale}) `
+    // // $(".canva-parent").removeClass("r-ovf")   
+    // $(".canva-parent").removeClass("ovf")
+    // $(".canva-parent").addClass("ovf")    
+    // // $(".canva-parent")[0].style.overflow = "scroll" 
+    scale < 4 ? scale = scale + 0.25 : scale
+    canvas.style.transform = `scale(${scale}) translate(37%, 38%)`
     magnification.textContent = scale * 100
+    renderPage(pageNum)
 }
 
 function zoomOut() {
@@ -164,5 +182,23 @@ function closePreview() {
   $("body").removeClass("blur")
   setTimeout(() => {
     $(".pdf-prev-parent").addClass("hide")
+    $("#preview-btn")[0].disabled = false
   }, 500)
+}
+
+function disableMagBtn() {
+  $("#mag-inc")[0].disabled = true
+  $("#mag-dcr")[0].disabled = true
+}
+function enableMagBtn() {
+  $("#mag-inc")[0].disabled = false
+  $("#mag-dcr")[0].disabled = false
+}
+
+function enableMagIncBtn() {
+  $("#mag-inc")[0].disabled = false  
+}
+
+function enableMagDcrBtn() {
+  $("#mag-dcr")[0].disabled = false 
 }

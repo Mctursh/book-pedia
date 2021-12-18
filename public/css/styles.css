@@ -12,6 +12,10 @@ section{
   min-height: 70vh;
 }
 
+button:hover{
+  opacity: .9;
+}
+
 
 
 /***************************** MEDIA QUERY *************************/
