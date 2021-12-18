@@ -4,6 +4,7 @@ const handle = require("./helpers/errorHandler")
 // const MongoClient = require('mongodb').MongoClient;
 
 const url = `mongodb+srv://admin-ayoade:${process.env.MONGO_PASSWORD}@cluster0.4d1r2.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
+// const url = "mongodb://localhost:27017/pdfDB"
 const options = { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }
 // // Connect using MongoClient
 // const mongoClient = new MongoClient(url);

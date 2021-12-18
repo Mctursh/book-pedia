@@ -27,8 +27,29 @@
                             Download
                         </button>
                     </a>
+                    <button onclick="preview('{{ downloadLink }}')" >Preview</button>
                 </div>
             </div>
         </article>
     </div>
 </section>
+
+<div class="pdf-prev-parent animate__animated hide">
+    <div class="container">
+        <div class="header" >
+            <button id="prev-page" class="khaki"><p>prev</p></button>
+            <button id="next-page" class="khaki"><p>next</p></button>
+            <span><span id="curr-page"><input type="number" on value="1" min="1" max="5" id="curr-num"></span> of <span id="total-pages" >4</span></span>
+            <div class="magnify">
+                <button onclick="zoomIn()" class="fas fa-plus mag-btn"></button>
+                <span>|</span>
+                <button onclick="zoomOut()" class="fas fa-minus mag-btn"></button>
+                <button class="khaki" ><span id="magnification" >100</span>%</button>
+            </div>
+            <button onclick="closePreview()" class="clear khaki">close <span class="fas fa-times"></span></button>
+        </div>
+        <div class="canva-parent">
+            <canvas id="pdf-canva" ></canvas>
+        </div>
+    </div class="container">
+</div>

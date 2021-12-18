@@ -59,3 +59,160 @@
     border: none;
     cursor: pointer;
 }
+
+
+
+/************************************************************CANVA STYLING*************************************************/
+
+.pdf-prev-parent{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+
+    /* background-color: red; */
+    /* padding: 1rem; */
+    height: 85%;
+    overflow: hidden;
+    border-radius: 6px;
+    z-index: 1;
+    width: 70%;
+    max-width: 80%;
+}
+
+.pdf-prev-parent .header{
+    background-color: #eee;
+    color: black;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.container{
+    height: 100%;
+}
+
+.canva-parent{
+    margin-top: 3rem;
+    overflow-y: scroll;
+    height: 100%;
+    background-color: #eee;
+    display: flex;
+    justify-content: center;
+}
+
+#prev-page, #next-page, .clear{
+    display: flex;
+    border: none;
+    padding: 0.2rem 0.7rem;
+    outline: none;
+    /* background: darkkhaki; */
+    color: #fff;
+    border-radius: 3px;
+    align-items: center;
+    justify-content: center;
+}
+
+canvas{
+    padding: 0 0.5rem 0.3rem;
+    background-color: #eee;
+}
+
+#curr-num{
+    width: 2.5em;
+    text-align: right;
+    outline: none;
+}
+
+.khaki{
+    background-color: #bdb76b;
+}
+
+.khaki:hover{
+    cursor: pointer;
+    opacity: .9;
+}
+
+.magnify{
+    margin-left: 3rem;
+    display: flex;
+    /* column-gap: 0.3em; */
+    align-items: baseline;
+}
+
+.magnify button{
+    border: none;
+}
+
+.mag-btn{
+    width: 20px;
+    height: 23px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.clear{
+    align-items: baseline;
+    gap: 0.3em;
+    margin-left: auto;
+}
+
+.mag-btn:hover{
+    background-color: #a9a9a9;
+    color: #fff;
+}
+
+.magnify button:nth-of-type(3) {
+    /* padding: 0 1em 0 0.3em; */
+    /* background-color: #bdb76b; */
+    color: #fff;
+    border-radius: 4px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* flex-grow: 1; */
+    width: 54px;
+    height: 23px;
+}
+
+.blur > :not(.pdf-prev-parent) {
+    filter: blur(4px);
+}
+
+.fadeInUpCustom{
+    animation-name: fadeInUpCustom;
+}
+
+.fadeOutDownCustom{
+    animation-name: fadeOutDownCustom;
+}
+
+
+@keyframes fadeInUpCustom {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes fadeOutDownCustom {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, 0);
+    }
+}

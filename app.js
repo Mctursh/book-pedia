@@ -7,6 +7,7 @@ const session = require("express-session")
 const cookieParser = require("cookie-parser")
 const MongoStore = require("connect-mongo")
 const flash = require("connect-flash")
+const morgan = require('morgan')
 
 const homeRoutes = require("./routes/home")
 const booksRoutes = require("./routes/books")
@@ -29,7 +30,7 @@ app.engine('hbs', handlebars({
     }
 }));
 
-
+// const url = "mongodb://localhost:27017/pdfDB"
 const url = `mongodb+srv://admin-ayoade:${process.env.MONGO_PASSWORD}@cluster0.4d1r2.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
 const options = { useNewUrlParser: true, useUnifiedTopology: true }
 
@@ -47,6 +48,9 @@ app.use(session({
   saveUninitialized: false
 }));
 app.use(flash());
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
+
+
 
 //separating routes into files
 app.use("/", homeRoutes)
