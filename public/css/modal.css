@@ -1,0 +1,81 @@
+/***********************************MODAL MEDIA QUERIES**************************************/
+@media screen and (max-width: 744px) {
+    .magnify{
+        margin-left: 1rem;
+    }
+}
+@media screen and (max-width: 654px) {
+    .pdf-prev-parent .header p, span, button, button::before, input[type=number]{
+        font-size: .9em;
+    }
+    #fa-times{
+        font-size: .9em;
+        color : #000;
+        width: auto;
+    }
+    .magnify{
+        margin: 0;
+    }
+    #prev-page,
+    #next-page,
+    .clear{
+        padding: 0.2rem 0.4rem;
+    }
+}
+@media screen and (max-width: 583px) {
+    #fa-times{
+        font-size: .85em;
+        color : #000;
+        width: auto;
+    }
+    .pdf-prev-parent .header p, span, button, button::before, input[type=number]{
+        font-size: .85em;
+        color: #000;
+    }
+    #prev-page,
+    #next-page,
+    .clear,
+    .magnify button:nth-of-type(3) {
+        padding: 0.2rem 0.3rem;
+        width: auto;
+    }
+    .pdf-prev-parent{
+        width: 80%;
+        max-width: fit-content;
+    }
+    button.clear{
+        margin-left: auto;
+    }
+}
+@media screen and (max-width: 537px) {
+    #fa-times{
+        font-size: .78em;
+        color : #000;
+        width: auto;
+    }
+    .pdf-prev-parent .header p, span, .clear, button::before, input[type=number]{
+        font-size: .78em;
+        color: #000;    
+    }
+    #prev-page,
+    #next-page,
+    .clear,
+    button,
+    .magnify button:nth-of-type(3) {
+        padding: 0.2rem;
+        margin: 0;
+    }
+    .pdf-prev-parent .header{
+        gap: .5em;
+    }
+    .pdf-prev-parent{
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .pdf-prev-parent{
+        width: 95%;
+    }
+    
+}

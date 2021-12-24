@@ -1,0 +1,25 @@
+<div class="pdf-prev-parent animate__animated hide">
+    <div class="container">
+        <div class="header">
+            <button id="prev-page" class="khaki">
+                <p>prev</p>
+            </button>
+            <button id="next-page" class="khaki">
+                <p>next</p>
+            </button>
+            <span><span id="curr-page"><input type="number" on value="1" min="1" max="5" id="curr-num"></span> of <span
+                    id="total-pages">4</span></span>
+            <div class="magnify">
+                <button id="mag-inc" onclick="zoomIn()" class="fas fa-plus mag-btn"></button>
+                <span>|</span>
+                <button id="mag-dcr" onclick="zoomOut()" class="fas fa-minus mag-btn"></button>
+                <button class="khaki"><span id="magnification">100</span>%</button>
+            </div>
+            <button onclick="closePreview()" class="clear khaki">close <span id="fa-times"
+                    class="fas fa-times"></span></button>
+        </div>
+        <div class="canva-parent">
+            <canvas onresize="alert('hi')" id="pdf-canva"></canvas>
+        </div>
+    </div>
+</div>
