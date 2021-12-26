@@ -6,8 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
 
-    <meta property="og:title" content="BookPedia">
-    <meta property="og:description" content="Public library for Downloading and uploading free PDF materials that help you and others prepare excellently for your exams, test and more">
+    {{#if bookDetail}}
+        <meta property="og:title" content="{{ bookDetail.nativeName }} - BookPedia">        
+        <meta property="og:description" content="{{ bookDetail.description }} - Public library for Downloading and uploading free PDF materials that help you and others prepare excellently for your exams, test and more">
+    {{else}}
+        <meta property="og:title" content="BookPedia">       
+        <meta property="og:description" content="Public library for Downloading and uploading free PDF materials that help you and others prepare excellently for your exams, test and more">
+    {{/if}}
     <meta property="og:image" content="https://res.cloudinary.com/mctursh/image/upload/v1635071458/BookPedia_pqrmbg.png">
     {{!-- <meta property="og:url" content="http://euro-travel-example.com/index.htm"> --}}
 
