@@ -1,0 +1,21 @@
+.alert{
+    height: 1em;
+    display: flex;
+    gap: .5em;
+    align-items: center;
+    background-color: #90ee90;
+    color: #fff;
+    position: relative;
+}
+
+p span#try-it{
+    padding: 0;
+}
+span a{
+    color: #fff;
+}
+
+div.success.alert.pad > div{
+    flex: 1 1 auto;
+    text-align: end;
+}

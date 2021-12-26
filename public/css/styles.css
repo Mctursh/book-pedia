@@ -10,6 +10,11 @@ body {
 
 section{
   min-height: 70vh;
+  transition: .5s;
+}
+
+.slideUp{
+  transform: translate(0, calc(-1em - 22.8px));
 }
 
 button:hover{
@@ -74,6 +79,10 @@ button:hover{
   }
 }
 @media only screen and (max-width: 580px) {
+  div.success.alert,
+  div.success.alert.pad>div {
+    font-size: .8em;
+  }
   section {
     min-height: 500px;
   }

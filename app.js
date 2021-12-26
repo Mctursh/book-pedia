@@ -45,7 +45,10 @@ app.use(session({
     mongoOptions: options
   }),
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 60 * 60 * 24 * 7 * 1000 // 1 week
+  }
 }));
 app.use(flash());
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))

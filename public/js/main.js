@@ -149,3 +149,13 @@ function handleSwitch() {
         }, 500);    
     }
 }
+
+//handles closing of the alert 
+function hideAlert() {
+    const alertDiv = $(".alert")
+    alertDiv.addClass("animate__animated animate__faster animate__fadeOutUp")  
+    setTimeout(() => {
+        $("section").addClass("slideUp")
+        alertDiv[0].style.zIndex = -1
+    }, 200)    
+}

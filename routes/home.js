@@ -10,6 +10,7 @@ const genArr = require("../helpers/generateArr");
 const feedPrep = require("../helpers/feedPrep");
 
 router.get("/", async (req, res) => {
+    console.log(req.session);
     const feeds = await queryStr("", {"downloads": "desc"})
     const { next, prev, totalPages, matchArr } = feedPrep(feeds, 1)
     res.render("feeds", {matchArr, totalPages, prev, next})

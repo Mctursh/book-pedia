@@ -10,14 +10,14 @@ let pdfDoc = null,
     pageNumPending = null,
     scale = 1,
     canvas = document.getElementById('pdf-canva'),
-    magnification = document.getElementById("magnification"),
-    ctx = canvas.getContext('2d');
+    magnification = document.getElementById("magnification")
 
 /**
  * Get page info from document, resize canvas accordingly, and render page.
  * @param num Page number. 
  */
 function renderPage(num) {
+  ctx = canvas.getContext('2d');
   pageRendering = true;
   disableMagBtn()
   // Using promise to fetch the page
@@ -74,7 +74,7 @@ function onPrevPage() {
   pageNum--;
   queueRenderPage(pageNum);
 }
-document.getElementById('prev-page').addEventListener('click', onPrevPage);
+// document.getElementById('prev-page').addEventListener('click', onPrevPage);
 
 /**
  * Displays next page.
@@ -86,7 +86,7 @@ function onNextPage() {
   pageNum++;
   queueRenderPage(pageNum);
 }
-document.getElementById('next-page').addEventListener('click', onNextPage);
+// document.getElementById('next-page').addEventListener('click', onNextPage);
 
 /**
  * Asynchronously downloads PDF.
