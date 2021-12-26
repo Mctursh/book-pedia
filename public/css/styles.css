@@ -15,8 +15,6 @@ section{
 
 .slideUp{
   transform: translate(0, calc(-1em - 22.8px));
-  position: relative;
-  z-index: -1;
 }
 
 button:hover{
