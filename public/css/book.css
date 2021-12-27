@@ -92,6 +92,7 @@
     top: 0;
     width: 100%;
     box-sizing: border-box;
+    border-radius: 12px 12px 0 0
 }
 
 .container{
@@ -106,6 +107,8 @@
     background-color: #eee;
     display: flex;
     justify-content: center;
+    border-radius: 0 0 12px 12px;
+    padding-bottom: 0.5em;
 }
 
 #prev-page, #next-page, .clear{
@@ -126,6 +129,7 @@ canvas{
     width: 100%;
     height: 100%;
     overflow: scroll;
+    border-radius: 0 0 12px 12px;
 }
 
 #curr-num{
@@ -233,14 +237,14 @@ canvas{
     }
     100% {
         opacity: 1;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -54.5%);
     }
 }
 
 @keyframes fadeOutDownCustom {
     0% {
         opacity: 1;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -54.5%);
     }
     100% {
         opacity: 0;

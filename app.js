@@ -5,6 +5,7 @@ const path = require("path")
 const handlebars = require("express-handlebars")
 const session = require("express-session")
 const cookieParser = require("cookie-parser")
+const mongoose = require("mongoose")
 const MongoStore = require("connect-mongo")
 const flash = require("connect-flash")
 const morgan = require('morgan')
@@ -30,26 +31,39 @@ app.engine('hbs', handlebars({
     }
 }));
 
-// const url = "mongodb://localhost:27017/pdfDB"
-const url = `mongodb+srv://admin-ayoade:${process.env.MONGO_PASSWORD}@cluster0.4d1r2.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
-const options = { useNewUrlParser: true, useUnifiedTopology: true }
-
 app.use(express.json())
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(express.static(path.join(__dirname, '/public')))
 app.use(cookieParser());
-app.use(session({
-  secret: "mysecretstring",
-  store: MongoStore.create({
-    mongoUrl: url,
-    mongoOptions: options
-  }),
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    maxAge: 60 * 60 * 24 * 7 * 1000 // 1 week
-  }
-}));
+
+// const url = "mongodb://localhost:27017/pdfDB"
+const url = `mongodb+srv://admin-ayoade:${process.env.MONGO_PASSWORD}@cluster0.4d1r2.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
+const options = { useNewUrlParser: true, useUnifiedTopology: true }
+
+main()
+  .then(() => {
+    console.log('succefully connected to DB');
+  })
+  .catch(err => console.log(err));
+
+async function main() {
+  await mongoose.connect(url, options);
+  const db = mongoose.connection
+  const dbClient = db.getClient()
+
+  app.use(session({
+    secret: "mysecretstring",
+    store: MongoStore.create({
+      client: dbClient
+    }),
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 60 * 60 * 24 * 7 * 1000 // 1 week
+    }
+  }));
+}
+
 app.use(flash());
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 
