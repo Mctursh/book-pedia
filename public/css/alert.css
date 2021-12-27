@@ -18,4 +18,5 @@ span a{
 div.success.alert.pad > div{
     flex: 1 1 auto;
     text-align: end;
+    cursor: pointer;
 }
