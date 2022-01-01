@@ -62,17 +62,20 @@ async function main() {
       maxAge: 60 * 60 * 24 * 7 * 1000 // 1 week
     }
   }));
+  app.use(flash());
+  app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
+
+
+  
+  //separating routes into files
+  app.use("/", homeRoutes)
+  app.use("/books", booksRoutes)
+  app.use("/download", downloadRoutes)
 }
 
-app.use(flash());
-app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 
 
 
-//separating routes into files
-app.use("/", homeRoutes)
-app.use("/books", booksRoutes)
-app.use("/download", downloadRoutes)
 
 let port = process.env.PORT;
 if (port == null || port == "") {

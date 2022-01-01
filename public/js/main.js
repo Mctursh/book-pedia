@@ -159,3 +159,8 @@ function hideAlert() {
         alertDiv[0].style.zIndex = -1
     }, 200)    
 }
+
+//handles
+function submitPdf() {
+    $("button#btn")[0].disabled = true
+}
