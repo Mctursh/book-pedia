@@ -17,7 +17,7 @@
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: #3D56B2;
+    background: $bg-blue;
     margin: -4px 0 0 -4px;
 }
 
@@ -93,7 +93,7 @@
     left: 12px;
 }
 
-.loader_parent{
+.loader_parent {
     display: flex;
     justify-content: center;
     align-items: center;

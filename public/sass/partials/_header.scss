@@ -1,29 +1,30 @@
-header{
-    background-color: #3D56B2;
+header {
+    background-color: $bg-blue;
     padding: 1em 15em;
-    box-shadow: 1px 1px 4px #000;
-    color: #fff;
+    box-shadow: 1px 1px 4px $black;
+    color: $white;
 }
 
-.header_parent{
+.header_parent {
     z-index: 10;
     position: relative;
 }
 
-.pad{
+.pad {
     padding: 1em 15em;
 }
 
-#brand_name{
+#brand_name {
     font-family: 'Montserrat',
-    sans-serif;
+        sans-serif;
 }
-#brand_name a{
+
+#brand_name a {
     color: inherit;
     text-decoration: none;
 }
 
-.header_child{
+.header_child {
     display: flex;
     align-items: center;
     height: 4em;
@@ -31,34 +32,34 @@ header{
     grid-template-columns: 1fr 1fr 1fr;
 }
 
-.search-form{
+.search-form {
     display: flex;
     justify-content: center;
     flex-direction: column;
 }
 
-.search-form input{
+.search-form input {
     height: 2.5em;
     border-radius: 5px;
     border: none;
     width: 17em;
     font-family: 'Raleway',
-    sans-serif;
+        sans-serif;
     outline: none;
 }
 
-input::placeholder{
+input::placeholder {
     font-family: 'Raleway',
-    sans-serif;
+        sans-serif;
 }
 
-.fa-search{
+.fa-search {
     color: blue;
 }
 
-#input_field{
-    background-color: #fff;
-    box-shadow: 0.4px 1.2px 3px #fff;
+#input_field {
+    background-color: $white;
+    box-shadow: 0.4px 1.2px 3px $white;
     display: flex;
     align-items: center;
     padding: 0 1em;
@@ -66,27 +67,27 @@ input::placeholder{
     justify-content: space-between;
 }
 
-.suggestions{
+.suggestions {
     position: relative;
     top: 1.5em;
     z-index: 3;
 }
 
-.suggestion_child{
+.suggestion_child {
     position: absolute;
     height: 16em;
-    background-color: #fff;
+    background-color: $white;
     width: 100%;
-    box-shadow: 0.4px 1.2px 3px #000;
+    box-shadow: 0.4px 1.2px 3px $black;
     border-radius: 7px;
     overflow: auto;
 }
 
-.suggested_courses{
-    color: #000;
+.suggested_courses {
+    color: $black;
 }
 
-.suggested_courses ul{
+.suggested_courses ul {
     display: flex;
     flex-direction: column;
     gap: .5em;
@@ -94,31 +95,32 @@ input::placeholder{
     padding: .5em 0;
 }
 
-.suggested_courses ul li{
+.suggested_courses ul li {
     padding: 0 .5em;
 }
 
-.suggested_courses ul li:hover{
+.suggested_courses ul li:hover {
     background-color: lightgray;
 }
 
-.suggested_courses ul a{
+.suggested_courses ul a {
     text-decoration: none;
     color: inherit;
     font-size: 1.5em;
 }
 
-.no_result{
-    color: #000;
+.no_result {
+    color: $black;
 }
 
-.upl-btn-parent{
+.upl-btn-parent {
     display: flex;
     justify-content: right;
 }
-#upl-btn{
+
+#upl-btn {
     font-weight: 600;
-    background-color: #fff;
+    background-color: $white;
     font-family: Raleway;
     border-radius: 5px;
     font-size: 1rem;
@@ -126,7 +128,7 @@ input::placeholder{
     color: blue;
     border: none;
     box-shadow: 0 0 4px 0 rgb(0 0 0 / 10%),
-    0 4px 8px 0 rgb(0 0 0 / 15%);
+        0 4px 8px 0 rgb(0 0 0 / 15%);
     text-decoration: none;
 }
 

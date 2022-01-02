@@ -1,50 +1,50 @@
-.exp-book-parent{
+.exp-book-parent {
     padding: 3em 15em;
 }
 
-#exp-article{
+#exp-article {
     min-height: 20em;
 }
 
-.exp-img img{
+.exp-img img {
     width: 280px;
     height: 100%;
     border-radius: 10px;
 }
 
-.exp-metadata{
+.exp-metadata {
     padding: 1em;
     display: flex;
     flex-direction: column;
     gap: 2em;
 }
 
-#exp-name{
+#exp-name {
     font-size: 2em;
     line-height: 1.2;
     letter-spacing: 1px;
 }
 
-.exp-details ul{
+.exp-details ul {
     display: flex;
     gap: 3em;
     list-style: none;
     font-size: 1.2em;
 }
 
-.exp-desc p{
+.exp-desc p {
     line-height: 1.5;
     letter-spacing: .3px;
 }
 
-#dwn-parent{
+#dwn-parent {
     height: 100%;
     display: flex;
     align-items: end;
     gap: 1em;
 }
 
-.dwn-btn{
+.dwn-btn {
     border: none;
     background-color: #5C7AEA;
     border-radius: 6px;
@@ -55,9 +55,9 @@
     justify-content: center;
 }
 
-.dwn-btn button{
+.dwn-btn button {
     font-size: 1.2em;
-    color: #fff;
+    color: $white;
     font-weight: 600;
     text-decoration: none;
     background: inherit;
@@ -69,7 +69,7 @@
 
 /************************************************************CANVA STYLING*************************************************/
 
-.pdf-prev-parent{
+.pdf-prev-parent {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -81,8 +81,8 @@
     max-width: 80%;
 }
 
-.pdf-prev-parent .header{
-    background-color: #eee;
+.pdf-prev-parent .header {
+    background-color: $bg-grey;
     color: black;
     display: flex;
     align-items: center;
@@ -95,83 +95,85 @@
     border-radius: 12px 12px 0 0
 }
 
-.container{
+.container {
     height: 100%;
 }
 
-.canva-parent{
+.canva-parent {
     margin-top: 3rem;
     overflow: scroll;
     height: 100%;
     width: 100%;
-    background-color: #eee;
+    background-color: $bg-grey;
     display: flex;
     justify-content: center;
     border-radius: 0 0 12px 12px;
     padding-bottom: 0.5em;
 }
 
-#prev-page, #next-page, .clear{
+#prev-page,
+#next-page,
+.clear {
     display: flex;
     border: none;
     padding: 0.2rem 0.7rem;
     outline: none;
     /* background: darkkhaki;
-    color: #fff; */
+    color: $white; */
     border-radius: 3px;
     align-items: center;
     justify-content: center;
 }
 
-canvas{
+canvas {
     padding: 0 0.5rem 0.3rem;
-    background-color: #eee;
+    background-color: $bg-grey;
     width: 100%;
     height: 100%;
     overflow: scroll;
     border-radius: 0 0 12px 12px;
 }
 
-#curr-num{
+#curr-num {
     width: 2.5em;
     text-align: right;
     outline: none;
 }
 
-.khaki{
+.khaki {
     background-color: #eee019;
 }
 
-.khaki:hover{
+.khaki:hover {
     cursor: pointer;
     opacity: .9;
 }
 
-.magnify{
+.magnify {
     margin-left: 3rem;
     display: flex;
     /* column-gap: 0.3em; */
     align-items: baseline;
 }
 
-.magnify button{
+.magnify button {
     border: none;
 }
 
-.mag-btn{
+.mag-btn {
     width: 20px;
     height: 23px;
     border-radius: 2px;
     cursor: pointer;
 }
 
-.clear{
+.clear {
     align-items: baseline;
     gap: 0.3em;
     margin-left: auto;
 }
 
-#preview-btn{
+#preview-btn {
     font-size: 1.2em;
     font-weight: 600;
     text-decoration: none;
@@ -182,19 +184,20 @@ canvas{
     border-radius: 6px;
     height: 55px;
 }
-#preview-btn:disabled{
+
+#preview-btn:disabled {
     cursor: not-allowed;
 }
 
-.mag-btn:hover{
+.mag-btn:hover {
     background-color: #a9a9a9;
-    color: #fff;
+    color: $white;
 }
 
 .magnify button:nth-of-type(3) {
     /* padding: 0 1em 0 0.3em; */
     /* background-color: #bdb76b; */
-    /* color: #fff; */
+    /* color: $white; */
     border-radius: 4px;
     border: none;
     display: flex;
@@ -205,15 +208,15 @@ canvas{
     height: 23px;
 }
 
-.blur > :not(.pdf-prev-parent) {
+.blur> :not(.pdf-prev-parent) {
     filter: blur(4px);
 }
 
-.ovf{
+.ovf {
     overflow: scroll;
 }
 
-.r-ovf{
+.r-ovf {
     overflow: inherit;
 }
 
@@ -221,11 +224,11 @@ canvas{
 
 
 /* ANIMATION */
-.fadeInUpCustom{
+.fadeInUpCustom {
     animation-name: fadeInUpCustom;
 }
 
-.fadeOutDownCustom{
+.fadeOutDownCustom {
     animation-name: fadeOutDownCustom;
 }
 
@@ -235,6 +238,7 @@ canvas{
         opacity: 0;
         transform: translate(-50%, 0);
     }
+
     100% {
         opacity: 1;
         transform: translate(-50%, -54.5%);
@@ -246,6 +250,7 @@ canvas{
         opacity: 1;
         transform: translate(-50%, -54.5%);
     }
+
     100% {
         opacity: 0;
         transform: translate(-50%, 0);

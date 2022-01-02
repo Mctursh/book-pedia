@@ -1,51 +1,53 @@
-section#book{
+section#book {
     padding: 3em 15em;
 }
 
-.articles{
+.articles {
     display: flex;
     flex-direction: column;
     gap: 1em;
 }
 
-.articles article{
+.articles article {
     max-height: 110px;
 }
 
-article{
+article {
     display: flex;
-    background-color: #fff;
+    background-color: $white;
     border-radius: 5px;
     box-shadow: 1px 1px 11px #bdb7b7;
 }
 
-#feed-img{
+#feed-img {
     width: 95px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
 }
 
-.metadata{
+.metadata {
     padding: 1em;
     display: flex;
     flex-direction: column;
-    row-gap: 1em;    
+    row-gap: 1em;
 }
 
-.detail ul{
+.detail ul {
     display: flex;
     list-style: none;
     gap: 1em;
 }
 
-li{
+li {
     font-size: .8em;
     color: lightslategrey;
 }
-.description p{
+
+.description p {
     font-size: .8em;
 }
-.title h1 a{
+
+.title h1 a {
     text-decoration: none;
     color: blue;
 }
@@ -55,14 +57,15 @@ li{
     list-style: none;
 }
 
-.paginate li, .page-numbers {
+.paginate li,
+.page-numbers {
     display: flex;
     align-content: center;
 }
 
 .pa-item a,
 .pa-next a,
-.pa-prev a{
+.pa-prev a {
     padding: .5em;
     border: 1px solid #f1f0f0;
     cursor: pointer;
@@ -72,6 +75,6 @@ li{
 .active,
 .active a {
     background: #1b55e2;
-    color: #fff;
+    color: $white;
     text-decoration: none;
 }
